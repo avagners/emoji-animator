@@ -58,6 +58,7 @@ function App() {
       <header className="header">
         <h1>Emoji Animator</h1>
         <p>Создавайте анимированные эмодзи из одного изображения</p>
+        <div className="version-info">Версия: 1.0.0</div>
       </header>
 
       <main className="main-content">
