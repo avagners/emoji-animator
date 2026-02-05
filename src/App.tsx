@@ -6,14 +6,44 @@ function App() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [animationType, setAnimationType] = useState<string>('rotate')
   const [animationSpeed, setAnimationSpeed] = useState<number>(10)
+  const [error, setError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const validateImage = (file: File): boolean => {
+    // Проверяем размер файла (ограничим до 5MB)
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      setError('Файл слишком большой. Максимальный размер: 5MB.')
+      return false
+    }
+
+    // Проверяем тип файла
+    if (!file.type.startsWith('image/')) {
+      setError('Пожалуйста, загрузите изображение (PNG, JPG, GIF)')
+      return false
+    }
+
+    // Дополнительно проверим расширение файла
+    const validExtensions = ['.png', '.jpg', '.jpeg', '.gif']
+    const fileExtension = '.' + file.name.split('.').pop()?.toLowerCase()
+    if (!validExtensions.includes(fileExtension)) {
+      setError('Неподдерживаемый формат файла. Поддерживаются: PNG, JPG, GIF')
+      return false
+    }
+
+    setError(null)
+    return true
+  }
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file) {
+    if (file && validateImage(file)) {
       const reader = new FileReader()
       reader.onload = (event) => {
         setSelectedImage(event.target?.result as string)
+      }
+      reader.onerror = () => {
+        setError('Ошибка при загрузке изображения')
       }
       reader.readAsDataURL(file)
     }
@@ -38,7 +68,7 @@ function App() {
             ) : (
               <div className="upload-placeholder">
                 <p>Нажмите, чтобы загрузить изображение</p>
-                <p className="subtitle">Поддерживаемые форматы: PNG, JPG, GIF</p>
+                <p className="subtitle">Поддерживаемые форматы: PNG, JPG, GIF (макс. 5MB)</p>
               </div>
             )}
             <input
@@ -49,6 +79,12 @@ function App() {
               style={{ display: 'none' }}
             />
           </div>
+          
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
         </section>
 
         {selectedImage && (
