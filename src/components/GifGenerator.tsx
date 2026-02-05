@@ -120,7 +120,7 @@ const GifGenerator = ({ imageUrl, type, speed, onComplete }: GifGeneratorProps) 
     const data = imageData.data;
     
     // Изменяем цвет в зависимости от кадра
-    const hueShift = Math.floor((frame / totalFrames) * 360); // Сдвиг оттенка
+    // const hueShift = Math.floor((frame / totalFrames) * 360); // Сдвиг оттенка (временно не используется)
     
     for (let i = 0; i < data.length; i += 4) {
       // data[i] = red, data[i+1] = green, data[i+2] = blue, data[i+3] = alpha
