@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-02-08
+
+### Added
+- SEO optimization for Russian-speaking audience
+- Multilingual meta tags (en/ru) with hreflang attributes
+- Dynamic meta tag management component
+- Sitemap.xml with language alternatives
+- Robots.txt for search engine crawling
+- Russian language README (README_RU.md)
+- Structured data (JSON-LD) with Russian translations
+- Updated URLs to Vercel domain
+
+### Changed
+- Upgraded version to 1.1.0
+- Enhanced privacy compliance in meta tag generation
+- Improved search engine visibility for Russian segment
+
 ## [1.0.0] - 2026-02-05
 
 ### Added
