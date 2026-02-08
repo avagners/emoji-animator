@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /animation/
+Disallow: /result/
+
+Sitemap: https://emoji-animator.vercel.app/sitemap.xml
