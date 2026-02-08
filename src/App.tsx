@@ -1,10 +1,13 @@
 import { useState, useRef } from 'react'
+import { useLocale } from './contexts/LocaleContext'
 import MetaTags from './components/MetaTags'
 import AnimationCanvas from './components/AnimationCanvas'
+import LanguageSwitcher from './components/LanguageSwitcher'
 import './App.css'
 import packageJson from '../package.json'
 
 function App() {
+  const { t } = useLocale();
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [animationType, setAnimationType] = useState<string>('rotate')
   const [animationSpeed, setAnimationSpeed] = useState<number>(10)
@@ -15,18 +18,18 @@ function App() {
   const getMetaDescription = () => {
     // Для сохранения конфиденциальности не включаем специфичные детали пользовательского контента
     if (selectedImage) {
-      return 'Create animated emojis from static images. Free online tool to generate animated GIFs from PNG, JPG, or GIF files with various animation effects.';
+      return t('title');
     }
-    return 'Create animated emojis from static images. Free online tool to generate animated GIFs from PNG, JPG, or GIF files with various animation effects.';
+    return t('title');
   };
 
   // Формируем русское описание для метатегов
   const getMetaDescriptionRu = () => {
     // Для сохранения конфиденциальности не включаем специфичные детали пользовательского контента
     if (selectedImage) {
-      return 'Создавайте анимированные эмодзи из статичных изображений. Бесплатный онлайн-инструмент для генерации анимированных GIF из PNG, JPG или GIF файлов с различными эффектами анимации.';
+      return t('title');
     }
-    return 'Создавайте анимированные эмодзи из статичных изображений. Бесплатный онлайн-инструмент для генерации анимированных GIF из PNG, JPG или GIF файлов с различными эффектами анимации.';
+    return t('title');
   };
 
   // Формируем ключевые слова для метатегов
@@ -47,13 +50,13 @@ function App() {
     // Проверяем размер файла (ограничим до 5MB)
     const maxSize = 5 * 1024 * 1024; // 5MB
     if (file.size > maxSize) {
-      setError('Файл слишком большой. Максимальный размер: 5MB.')
+      setError(t('error_large_file'))
       return false
     }
 
     // Проверяем тип файла
     if (!file.type.startsWith('image/')) {
-      setError('Пожалуйста, загрузите изображение (PNG, JPG, GIF)')
+      setError(t('error_invalid_format'))
       return false
     }
 
@@ -61,7 +64,7 @@ function App() {
     const validExtensions = ['.png', '.jpg', '.jpeg', '.gif']
     const fileExtension = '.' + file.name.split('.').pop()?.toLowerCase()
     if (!validExtensions.includes(fileExtension)) {
-      setError('Неподдерживаемый формат файла. Поддерживаются: PNG, JPG, GIF')
+      setError(t('error_unsupported_format'))
       return false
     }
 
@@ -77,7 +80,7 @@ function App() {
         setSelectedImage(event.target?.result as string)
       }
       reader.onerror = () => {
-        setError('Ошибка при загрузке изображения')
+        setError(t('error_invalid_format')) // Используем локализованное сообщение
       }
       reader.readAsDataURL(file)
     }
@@ -90,17 +93,18 @@ function App() {
   return (
     <div className="App">
       <MetaTags 
-        title={'Emoji Animator - Create Animated Emojis'} 
-        titleRu={'Emoji Animator - Создание анимированных эмодзи'}
+        title={t('title')} 
+        titleRu={t('title')}
         description={getMetaDescription()}
         descriptionRu={getMetaDescriptionRu()}
         keywords={getMetaKeywords()}
         keywordsRu={getMetaKeywordsRu()}
       />
       <header className="header">
-        <h1>Emoji Animator</h1>
-        <p>Создавайте анимированные эмодзи из одного изображения</p>
-        <div className="version-info">Версия: {packageJson.version}</div>
+        <h1>{t('header_title')}</h1>
+        <p>{t('header_subtitle')}</p>
+        <div className="version-info">{t('version')}: {packageJson.version}</div>
+        <LanguageSwitcher />
       </header>
 
       <main className="main-content">
@@ -110,8 +114,8 @@ function App() {
               <img src={selectedImage} alt="Uploaded preview" className="preview-image" />
             ) : (
               <div className="upload-placeholder">
-                <p>Нажмите, чтобы загрузить изображение</p>
-                <p className="subtitle">Поддерживаемые форматы: PNG, JPG, GIF (макс. 5MB)</p>
+                <p>{t('upload_area_click')}</p>
+                <p className="subtitle">{t('upload_area_formats')}</p>
               </div>
             )}
             <input
@@ -133,22 +137,22 @@ function App() {
         {selectedImage && (
           <section className="controls-section">
             <div className="control-group">
-              <label htmlFor="animation-type">Тип анимации:</label>
+              <label htmlFor="animation-type">{t('animation_type_label')}</label>
               <select
                 id="animation-type"
                 value={animationType}
                 onChange={(e) => setAnimationType(e.target.value)}
               >
-                <option value="rotate">Вращение</option>
-                <option value="blink">Моргание</option>
-                <option value="pulse">Пульсация</option>
-                <option value="color-change">Переливание цветом</option>
-                <option value="fade">Появление/исчезновение</option>
+                <option value="rotate">{t('animation_types.rotate')}</option>
+                <option value="blink">{t('animation_types.blink')}</option>
+                <option value="pulse">{t('animation_types.pulse')}</option>
+                <option value="color-change">{t('animation_types.color-change')}</option>
+                <option value="fade">{t('animation_types.fade')}</option>
               </select>
             </div>
 
             <div className="control-group">
-              <label htmlFor="animation-speed">Скорость анимации:</label>
+              <label htmlFor="animation-speed">{t('animation_speed_label')}</label>
               <input
                 type="range"
                 id="animation-speed"
@@ -164,7 +168,7 @@ function App() {
 
         {selectedImage && (
           <section className="preview-section">
-            <h3>Предварительный просмотр</h3>
+            <h3>{t('preview_heading')}</h3>
             <div className="animation-preview">
               <AnimationCanvas
                 imageUrl={selectedImage}

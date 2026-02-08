@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-02-08
+
+### Fixed
+- Corrected localization implementation using React Context
+- Improved language switching mechanism without page reload
+- Fixed translation fallback mechanism
+- Enhanced locale context provider
+
+### Changed
+- Upgraded version to 1.2.1
+- Refactored i18n implementation for better performance
+
+## [1.2.0] - 2026-02-08
+
+### Added
+- Full localization support for English and Russian languages
+- Translation files and utility functions
+- Language switcher component in UI
+- Localized error messages and UI elements
+- Internationalization (i18n) infrastructure
+
+### Changed
+- Upgraded version to 1.2.0
+- Migrated hardcoded UI strings to localized equivalents
+- Enhanced accessibility with multilingual support
+
 ## [1.1.2] - 2026-02-08
 
 ### Added

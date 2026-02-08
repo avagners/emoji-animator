@@ -1,0 +1,50 @@
+{
+  "en": {
+    "title": "Emoji Animator - Create Animated Emojis",
+    "header_title": "Emoji Animator",
+    "header_subtitle": "Create animated emojis from a single image",
+    "version": "Version",
+    "upload_area_click": "Click to upload an image",
+    "upload_area_formats": "Supported formats: PNG, JPG, GIF (max. 5MB)",
+    "animation_type_label": "Animation type:",
+    "animation_speed_label": "Animation speed:",
+    "preview_heading": "Preview",
+    "download_button": "Download GIF",
+    "animation_types": {
+      "rotate": "Rotation",
+      "blink": "Blinking",
+      "pulse": "Pulsing",
+      "color-change": "Color change",
+      "fade": "Fade in/out"
+    },
+    "error_large_file": "File too large. Maximum size: 5MB.",
+    "error_invalid_format": "Please upload an image (PNG, JPG, GIF)",
+    "error_unsupported_format": "Unsupported file format. Supported: PNG, JPG, GIF",
+    "generating_gif": "Generating GIF...",
+    "animation_placeholder": "Animation will be displayed here"
+  },
+  "ru": {
+    "title": "Emoji Animator - Создание анимированных эмодзи",
+    "header_title": "Emoji Animator",
+    "header_subtitle": "Создавайте анимированные эмодзи из одного изображения",
+    "version": "Версия",
+    "upload_area_click": "Нажмите, чтобы загрузить изображение",
+    "upload_area_formats": "Поддерживаемые форматы: PNG, JPG, GIF (макс. 5MB)",
+    "animation_type_label": "Тип анимации:",
+    "animation_speed_label": "Скорость анимации:",
+    "preview_heading": "Предварительный просмотр",
+    "download_button": "Скачать гифку",
+    "animation_types": {
+      "rotate": "Вращение",
+      "blink": "Моргание",
+      "pulse": "Пульсация",
+      "color-change": "Переливание цветом",
+      "fade": "Появление/исчезновение"
+    },
+    "error_large_file": "Файл слишком большой. Максимальный размер: 5MB.",
+    "error_invalid_format": "Пожалуйста, загрузите изображение (PNG, JPG, GIF)",
+    "error_unsupported_format": "Неподдерживаемый формат файла. Поддерживаются: PNG, JPG, GIF",
+    "generating_gif": "Генерация гифки...",
+    "animation_placeholder": "Анимация будет отображена здесь"
+  }
+}

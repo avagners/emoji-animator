@@ -25,6 +25,7 @@ body {
   color: white;
   padding: 2rem;
   text-align: center;
+  position: relative;
 }
 
 .header h1 {
@@ -36,6 +37,20 @@ body {
   font-size: 0.9rem;
   color: #bdc3c7;
   margin-top: 0.5rem;
+}
+
+.language-switcher {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.language-select {
+  padding: 0.3rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-size: 0.9rem;
 }
 
 .main-content {
